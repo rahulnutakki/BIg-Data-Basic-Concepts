@@ -1,0 +1,408 @@
+DAG: Directed Acyclic Graph
+
+************************************************************************************************************************************************
+Login Details:
+************************************************************************************************************************************************
+
+Email : hadooptrainingkeanesoft@gmail.com
+Password: hadoopKeanesoft
+
+************************************************************************************************************************************************
+Practicals Basic Commands :
+************************************************************************************************************************************************
+-- !clear;
+-- SET hive.cli.print.current.db = true;
+SET hive.cli.print.rahul_hadoop = true;
+
+-- Show Create table.
+show create table srikanth_course.employee_new2;
+-- Drop table.
+drop table srikanth_course.employee_e;
+-- Display table.
+select * from srikanth_course.employee_new2;
+
+
+
+drop table srikanth_course.employee_new2;
+CREATE Table IF NOT EXISTS srikanth_course.employee_newx (
+eid string,
+name String,
+salary String,
+designation String)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE
+LOCATION 'hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_new';
+
+#########################################################Rahul Testing####################################################################################
+CREATE Table IF NOT EXISTS srikanth_course.rahul_test (
+eid string,
+name String,
+salary String,
+designation String)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE
+LOCATION 'hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_new';
+show create table srikanth_course.rahul_test;
+
+select * from srikanth_course.rahul_test;
+
+
+
+hadoop fs -ls hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/rahul_test/
+
+
+******************To create a directory#####
+
+*To move files from one directory to another
+mv /home/jack/testfile /home/jack/testfile2
+
+mv 
+
+hadoop fs -mkdir hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/rahul_test/
+
+hadoop fs -mkdir hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/rahul_test/
+
+
+******************To list the contents in the directory
+hadoop fs -cat hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/rahul_test/rahul_test.txt
+
+hadoop fs -cat hdfs://nn01.itversity.com:8020/apps/hive/warehouse/rahul_hadoop
+
+******************To put the contents in the directory froma different place
+hadoop fs -put /home/keanesoft/srikanth_course/rahul_test.txt hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/rahul_test/
+
+-- Loading a data to hive table from Local Directory
+LOAD DATA LOCAL INPATH '/home/keanesoft/srikanth_course/rahul_test.txt' OVERWRITE INTO TABLE srikanth_course.rahul_test;
+-- Loading a data to hive table from HDFS Directory
+LOAD DATA INPATH 'hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/rahul_test/rahul_test.txt' OVERWRITE INTO TABLE srikanth_course.rahul_test;
+
+
+
+
+
+CREATE Table IF NOT EXISTS srikanth_course.employee_newy (
+eid string,
+name String,
+salary String,
+designation String)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE
+LOCATION 'hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_new';
+
+
+CREATE Table IF NOT EXISTS srikanth_course.employee_newz (
+eid string,
+name String,
+salary String,
+designation String)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE
+LOCATION 'hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_new';
+show create table srikanth_course.employee_newx;
+show create table srikanth_course.employee_newy;
+show create table srikanth_course.employee_newz;
+
+
+-- Alter Syntax
+ALTER TABLE srikanth_course.employee_newx set location 'hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_stg'
+
+-- Insert Syntax
+insert overwrite table srikanth_course.employee_newx
+select * from srikanth_course.employee_newy;
+
+pathx = 'hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_new'
+
+table1
+table2
+table3
+
+
+
+
+
+
+Hadoop Commands:
+hadoop fs -ls hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/
+hadoop fs -cat hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee/employee.txt
+hadoop fs -mkdir hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_test/
+hadoop fs -mkdir hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_test_car/
+hadoop fs -mkdir hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_test_tab/
+hadoop fs -put src_path dest_path
+hadoop fs -put /home/keanesoft/srikanth_course/test.txt hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_test/
+hadoop fs -put /home/keanesoft/srikanth_course/test_car.txt hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_test_car/
+hadoop fs -put /home/keanesoft/srikanth_course/test_tab.txt hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_test_tab/
+
+
+
+drop table srikanth_course.employee;
+CREATE Table IF NOT EXISTS  `srikanth_course.employee`(
+`eid` int,
+`name` string,
+`salary` string,
+`designation` string)
+COMMENT 'Employee details'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+STORED AS INPUTFORMAT
+'org.apache.hadoop.mapred.TextInputFormat'
+OUTPUTFORMAT
+'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+'hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_test/';
+select * from srikanth_course.employee;
+
+drop table srikanth_course.employee_car;
+CREATE Table IF NOT EXISTS  `srikanth_course.employee_car`(
+`eid` int,
+`name` string,
+`salary` string,
+`designation` string)
+COMMENT 'Employee details'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '^'
+LINES TERMINATED BY '\n'
+STORED AS INPUTFORMAT
+'org.apache.hadoop.mapred.TextInputFormat'
+OUTPUTFORMAT
+'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+'hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_test_car/';
+select * from srikanth_course.employee;
+
+
+
+drop table srikanth_course.employee_tab;
+CREATE Table IF NOT EXISTS  `srikanth_course.employee_tab`(
+`eid` int,
+`name` string,
+`salary` string,
+`designation` string)
+COMMENT 'Employee details'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+STORED AS INPUTFORMAT
+'org.apache.hadoop.mapred.TextInputFormat'
+OUTPUTFORMAT
+'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+'hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_test_tab/';
+select * from srikanth_course.employee;
+
+drop table srikanth_course.employee_temp;
+CREATE Table IF NOT EXISTS  `srikanth_course.employee_temp`(
+`eid` int,
+`name` string,
+`salary` string,
+`designation` string)
+COMMENT 'Employee details'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '^'
+LINES TERMINATED BY '\n'
+STORED AS INPUTFORMAT
+'org.apache.hadoop.mapred.TextInputFormat'
+OUTPUTFORMAT
+'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat';
+select * from srikanth_course.employee_temp;
+show create table srikanth_course.employee_temp;
+
+
+
+drop table srikanth_course.employee_temp2;
+CREATE Table IF NOT EXISTS  `srikanth_course.employee_temp2`(
+`eid` int,
+`name` string,
+`salary` string,
+`designation` string)
+COMMENT 'Employee details'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '^'
+LINES TERMINATED BY '\n'
+STORED AS INPUTFORMAT
+'org.apache.hadoop.mapred.TextInputFormat'
+OUTPUTFORMAT
+'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat';
+
+select * from srikanth_course.employee_temp2;
+show create table srikanth_course.employee_temp2;
+
+
+hadoop fs -ls hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_temp/
+
+-- Loading a data to hive table from Local Directory
+LOAD DATA LOCAL INPATH '/home/keanesoft/srikanth_course/test_car.txt' OVERWRITE INTO TABLE srikanth_course.employee_temp;
+-- Loading a data to hive table from HDFS Directory
+LOAD DATA INPATH 'hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_test_car/test_car.txt' OVERWRITE INTO TABLE srikanth_course.employee_temp2;
+
+Day1
+hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_test_car/test_car_2019_0101.txt
+hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_test_car/test_car_2019_0102.txt
+
+************************************************************************************************************************************************
+
+import from source_system write to hive staging table hive_stg_table.
+
+hive_stg_table  ===> hive_incr_table
+hive_stg_table  ===> hive_log_table
+hive_stg_table  ===> hive_hist_table
+
+
+************************************************************************************************************************************************
+June26th Class:
+************************************************************************************************************************************************
+Internal vs External:
+************************************************************************************************************************************************
+Internal Table: If we drop this table it will drop the hdfs data as well along with Hive table.
+External Table: If we drop this table it will not drop the hdfs data but only Hive table will be dropped.
+
+Use case for External:
+hdfs_external_path = 'hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_external_path/test.txt'
+user1 created tabley pointing to hdfs_external_path
+user2 created tablez pointing to hdfs_external_path
+
+Use case for Internal:
+user1 created tabley pointing to hdfs_pathi1
+user2 created tablez pointing to hdfs_pathi2
+SET hive.cli.print.current.db = true;
+
+
+
+drop table srikanth_course.employee_table_e;
+CREATE EXTERNAL TABLE srikanth_course.employee_table_e (
+eid string,
+name String,
+salary String,
+designation String)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE
+location 'hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_external_path/';
+show create table srikanth_course.employee_table_e;
+select * from srikanth_course.employee_table_e;
+
+
+hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_external_path/
+1201,Gopal,45000,Technicalmanager
+1202,Manisha,45000,Proofreader
+1203,Masthanvali,40000,Technicalwriter
+1204,Kiran,40000,HrAdmin
+1205,Kranthi,30000,OPSAdmin
+
+
+hadoop fs -mkdir hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_external_path/
+hadoop fs -ls hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_external_path/
+hadoop fs -put /home/keanesoft/external_path.txt hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_external_path/
+hadoop fs -cat hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_external_path/external_path.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+drop table srikanth_course.employee_table_i;
+CREATE TABLE srikanth_course.employee_table_i (
+eid string,
+name String,
+salary String,
+designation String)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE
+location 'hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_internal_path/';
+show create table srikanth_course.employee_table_i;
+select * from srikanth_course.employee_table_i;
+
+
+hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_internal_path/
+1201,Gopal,45000,Technicalmanager
+1202,Manisha,45000,Proofreader
+1203,Masthanvali,40000,Technicalwriter
+1204,Kiran,40000,HrAdmin
+1205,Kranthi,30000,OPSAdmin
+
+
+hadoop fs -mkdir hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_internal_path/
+hadoop fs -ls hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_internal_path/
+hadoop fs -put /home/keanesoft/internal_path.txt hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_internal_path/
+hadoop fs -cat hdfs://nn01.itversity.com:8020/apps/hive/warehouse/srikanth_course.db/employee_internal_path/internal_path.txt
+
+
+
+************************************************************************************************************************************************
+ALTER:
+************************************************************************************************************************************************
+ALTER TABLE srikanth_course.employee_table_e
+ADD COLUMNS (deptid STRING);
+
+show create table srikanth_course.employee_table_e;
+select * from srikanth_course.employee_table_e where salary = '30000';
+
+
+INSERT INTO TABLE srikanth_course.employee_table_e VALUES ('1206','new_emp','60000','OPSAdmin',null,null);
+ALTER TABLE srikanth_course.employee_table_e REPLACE COLUMNS (
+eid string empid string);
+
+
+************************************************************************************************************************************************
+PARTITION and Bucketing Discussion and Practicals:
+************************************************************************************************************************************************
+
+
+Partition: Definition
+
+
+select * from srikanth_course.employee_table3;
+drop table srikanth_course.employee_table3;
+show create table srikanth_course.employee_table3;
+LOAD DATA LOCAL INPATH '/home/keanesoft/srikanth_course/employee_table3.txt' OVERWRITE INTO TABLE employee_table3;
+
+-- Create two temp tables with and without partition.
+
+CREATE EXTERNAL TABLE srikanth_course.employee_table3 (
+eid string,
+name String,
+salary String,
+designation String,
+dateofjoin String)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE;
+
+CREATE TABLE srikanth_course.employee_table4
+(eid string,
+name String,
+salary String,
+designation String)
+PARTITIONED BY (dateofjoin STRING)
+STORED AS ORC;
+
+
+-- Insert  the data
+INSERT INTO TABLE srikanth_course.employee_table4
+PARTITION (dateofjoin)
+select * from srikanth_course.employee_table3;
+
+
+select distinct dateofjoin from srikanth_course.employee_table4;
+-- Check the difference in time execution: -- Also explain with and with out where condition.
+select count(*) from srikanth_course.employee_table3  where dateofjoin = '2019'; -- check non existing dates also.
+select count(*) from srikanth_course.employee_table4 where dateofjoin = '2019'; -- check non existing dates also.
